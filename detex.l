@@ -90,8 +90,8 @@
 
 #define	LaBEGIN		if (fLatex) BEGIN
 #define	IGNORE		if (fSpace && !fWord) putchar(' ')
-#define NOUN		if (fSpace && !fWord && !fReplace) putchar(' '); else {if (fReplace) printf("noun");}
-#define VERBNOUN		if (fReplace) printf(" verbs noun"); /* puts a verb and a noun to make grammar checking work */
+#define NOUN		if (fSpace && !fWord && !fReplace) putchar(' '); else {if (fReplace) printf(" ###");}
+#define VERBNOUN		if (fReplace) printf(" ####"); /* puts a verb and a noun to make grammar checking work */
 #define	SPACE		if (!fWord) putchar(' ')
 #define	NEWLINE		if (!fWord) putchar('\n')
 #define	LATEX		fLatex=!fForcetex

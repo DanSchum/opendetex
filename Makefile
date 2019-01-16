@@ -42,16 +42,17 @@ UNAME_S := $(shell uname -s)
 
 # Installation directory
 #
-DESTDIR	= /usr/local/bin
-
+DESTDIR	= /home/dschumacher/dschumacher_working_dir/Masterarbeit_Misc/detex/opendetex
+LD_LIBRARY_PATH=/home/dschumacher/dschumacher_working_dir/anaconda/envs/detex2/lib
 # Specify you favorite compiler
 #
-#CC	= gcc
+CC	= gcc
 
 # Compile time flags, just uncomment the necessary lines
 # Some say GNU make does not correctly handle += -- you may have to use :=
 #
-DEFS	=
+#DEFS	= -L/home/dschumacher/dschumacher_working_dir/anaconda/envs/detex2/lib -lfoo
+DEFS    = 
 #
 # Add -traditional for GNU cc on ISC 386/ix system and possibly others
 # (reported by pinard@iro.umontreal.ca)
@@ -110,7 +111,7 @@ VERSION = 2.8.5-SNAPSHOT
 all:	${PROGS}
 
 detex: ${D_OBJ}
-	${CC} ${CFLAGS} -o $@ ${D_OBJ} ${LEXLIB}
+	${CC} /home/dschumacher/dschumacher_working_dir/anaconda/envs/detex2/lib/libfl.so.2 ${CFLAGS} -o $@ ${D_OBJ}  
 
 delatex: detex
 	cp detex delatex
@@ -126,15 +127,15 @@ man-page:
 # this target
 install: all
 	rm -f ${DESTDIR}/detex
-	install -c -m 775 -g staff -s detex ${DESTDIR}
-	install detex.1l /usr/local/share/man/man1
+	install -c -m 700 -s detex ${DESTDIR}
+	install detex.1l /home/dschumacher/dschumacher_working_dir/Masterarbeit_Misc/detex/detex_installation/man 
 #	rm -f ${DESTDIR}/delatex
 #	ln ${DESTDIR}/detex ${DESTDIR}/delatex
 
 uninstall:
 	rm -f ${DESTDIR}/detex
 	rm -f ${DESTDIR}/delatex
-	rm -f /usr/local/share/man/man1/detex.*
+	rm -f /home/dschumacher/dschumacher_working_dir/Masterarbeit_Misc/detex/detex_installation/man/detex.*
 
 clean:
 	-rm -f a.out core *.s *.o ERRS errs .,* .emacs_[0-9]*
